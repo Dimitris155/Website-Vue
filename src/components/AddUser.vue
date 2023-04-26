@@ -8,7 +8,7 @@
             default: () => [],
         },
     });
-
+    
     const name = ref('');
     const code = ref('');
     const router = useRouter();
