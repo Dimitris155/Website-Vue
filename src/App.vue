@@ -1,5 +1,5 @@
 <script setup>
-	import Sidebar from './components/Sidebar.vue'
+	
 	import AppLoader from './components/AppLoader.vue'
 	import { onMounted , ref } from 'vue'
 	
