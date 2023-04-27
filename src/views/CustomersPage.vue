@@ -1,7 +1,10 @@
 
 <script setup>
 
+    import ListLoader from '../components/ListLoader.vue'
     import {onMounted, ref} from 'vue'
+
+    /*getting the data from the json file */
     const customers = ref([])
     async function getCustomers() {
         const res = await fetch('/data/customers.json')
@@ -10,15 +13,29 @@
     }
     onMounted(() => getCustomers())
 
+    /* Bar loading before the list appear */
+    function closeListLoader(){
+		isListLoading.value = false;
+	}
+	onMounted(() => {
+
+		setTimeout(closeListLoader, 2000);
+	})
+
+	const isListLoading = ref(true);
+
+
 </script>
 
 
 <template>
+    <ListLoader v-if="isListLoading" />
+
     <main class="customers-page">
         <div class="top-bar">
             <h1>Customers</h1>
         </div>
-        <div class="customers">
+        <div class="customers" v-if="!isListLoading">
             <table>
                 <thead>
                     <tr>

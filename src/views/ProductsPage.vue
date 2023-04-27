@@ -1,5 +1,6 @@
 
 <script setup>
+    import ListLoader from '../components/ListLoader.vue'
     import {onMounted, ref} from 'vue'
 
     const products = ref([])
@@ -42,14 +43,26 @@
             alert("Please choose a product to delete");
         }
     }
+    /* Bar loading before the list appear */
+    function closeListLoader(){
+		isListLoading.value = false;
+	}
+	onMounted(() => {
+
+		setTimeout(closeListLoader, 2000);
+	})
+
+	const isListLoading = ref(true);
+
 </script>
 
 <template>
+    <ListLoader v-if="isListLoading" />
     <main class="products-page">
         <div class="top-bar">
             <h1>Products <button @click="deletecheckedProducts">Delete</button> </h1>
         </div>
-        <div class="products">
+        <div class="products" v-if="!isListLoading" >
             <table>
                 <thead>
                     <tr>

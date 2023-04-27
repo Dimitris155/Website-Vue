@@ -11,8 +11,17 @@
 
 		setTimeout(closeLoader, 3000);
 	})
-
 	const isAppLoading = ref(true);
+
+	function closeListLoader(){
+		isListLoading.value = false;
+	}
+	onMounted(() => {
+
+		setTimeout(closeListLoader, 3000);
+	})
+
+	const isListLoading = ref(true);
 
 </script>
 
@@ -22,8 +31,8 @@
 		<AppLoader v-if='isAppLoading' /> 
 		<!-- Sidebar -->
 		<Sidebar v-if="!isAppLoading" />
-		
-		<router-view v-if="!isAppLoading"/>
+
+		<RouterView v-if="!isAppLoading" />
 	</div>
 </template>
 

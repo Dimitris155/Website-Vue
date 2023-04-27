@@ -1,4 +1,5 @@
 <script setup>
+    import ListLoader from '../components/ListLoader.vue'
     import { ref, onMounted } from 'vue';
 
     const users = ref([]);
@@ -16,10 +17,22 @@
     onMounted(() => {
     getUsers();
     });
+    
+    /* Bar loading before the list appear */
+    function closeListLoader(){
+		isListLoading.value = false;
+	}
+	onMounted(() => {
+
+		setTimeout(closeListLoader, 2000);
+	})
+
+	const isListLoading = ref(true);
 
 </script>
 
 <template>
+    <ListLoader v-if="isListLoading" />
     <main class="users-page">
         <div class="top-bar">
             <h1>Users  
@@ -27,7 +40,7 @@
 			    <button>Add New</button>
 		    </router-link> </h1>
         </div>
-        <div class="users">
+        <div class="users" v-if="!isListLoading">
             <table>
                 <thead>
                     <tr>
