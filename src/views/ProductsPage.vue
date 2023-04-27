@@ -79,6 +79,9 @@
 
 input[type="checkbox"]{
     cursor: pointer;
+    margin: 20px;
+    margin-top: 30px;
+
 }
 
 /* top bar */
@@ -101,6 +104,7 @@ button{
     border: solid;
     font-family: 'OpenSans-Regular';
     text-align: right;
+    position: fixed;
         
 }
 
@@ -169,6 +173,9 @@ td{
             right: 0;
                 
         }
+        input[type="checkbox"]{
+            transform: scale(1.5);
+        }
 	}
 
     @media (max-width: 1024px) {
@@ -176,8 +183,6 @@ td{
             margin-left: 100px;
             height: 50px;
             padding-left: 0px;
-            
-            
         }
         td{
             padding-left: 100px;
@@ -198,6 +203,9 @@ td{
             right: 0;
                 
         }
+        input[type="checkbox"]{
+            transform: scale(1.4);
+        }
     }
     
     @media (max-width: 400px) {
@@ -206,7 +214,7 @@ td{
             height: 50px;
             padding-left: 0px;
             padding-top: 8px;
-            font-size: large;
+            font-size: x-large;
         }
         td{
             padding-left: 100px;
@@ -221,11 +229,14 @@ td{
             padding-bottom: 2px;
             padding-right: 7px;
             margin-right: 0px;
-            margin-top: 10px;
+            margin-top: 4px;
             width: 60px;
             height: 30px;
             right: 0;
                 
+        }
+          input[type="checkbox"]{
+            transform: scale(1.2);
         }
     }
 

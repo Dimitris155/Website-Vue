@@ -6,8 +6,8 @@
     async function getUsers() {
         const res = await fetch('/data/users.json');
         let data = await res.json();
-        const sessionData = JSON.parse(sessionStorage.getItem('users')); // Check if there is any data in session storage
-        if (sessionData && sessionData.length > 0) {
+        const sessionData = JSON.parse(sessionStorage.getItem('users')); 
+        if (sessionData && sessionData.length > 0) { // Check if there is any data in session storage
             data = [...sessionData,...data];
         }
         users.value = data;
@@ -167,6 +167,8 @@ td{
             margin-left: 100px;
             height: 50px;
             padding-left: 0px;
+            font-size: x-large;
+            margin-top: 5px;
         }
         td{
             padding-left: 100px;
@@ -180,11 +182,11 @@ td{
             padding-bottom: 2px;
             padding-right:7px ;
             margin-right: 0px;
-            margin-top: 10px;
+            margin-top: 5px;
             width: 80px;
             height: 30px;
             right: 0;
-                
+            position: fixed;    
         }
 
     }

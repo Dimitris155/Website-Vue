@@ -1,13 +1,6 @@
 <script setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-
-    const props = defineProps({
-        users: {
-            type: Array,
-            default: () => [],
-        },
-    });
     
     const name = ref('');
     const code = ref('');
@@ -23,7 +16,7 @@
             const users = JSON.parse(sessionStorage.getItem('users')) || [];
             users.push(user);
             sessionStorage.setItem('users', JSON.stringify(users));
-            props.users.push(user);
+            users.push(user);
             router.push('/users');
         } else {
             alert('All fields are required!');
@@ -59,10 +52,17 @@
     background-color: var(--white);
     width: 100%;
     box-shadow: 2px 5px 5px #888888;
- 
+    text-decoration: none;
 }
 h1{
     font-family: 'OpenSans-Bold';
+}
+button{
+    position: absolute;
+    cursor: pointer;
+    border: solid;
+    font-family: 'OpenSans-Regular';
+    right: 0;  
 }
 
 /* user input */
@@ -98,35 +98,28 @@ input{
         h1{
             margin-left: 160px;
             height: 50px;
-
         }
         .top-bar{
-            text-decoration: none;
             padding: 10px;
         }
+
         button{
-            position: absolute;
-            cursor: pointer;
-            border: solid;
             border-radius: 50px;
-            padding-right:13px ;
+            padding-right: 0px;
             margin-right: 20px;
-            font-family: 'OpenSans-Regular';
-            width: 70px;
-            height: 30px;
-            right: 0;
-            text-align: right;
+            width: 80px;
+            height: 40px;
+            margin-top: 5px;
+            font-size: medium;
         }
         .add{
             padding: 10px;
-            
             margin: 20px;
             margin-left: 200px;
         }
         .material-symbols-outlined {
             width: 20px;
             margin-right: 20px;
-            
         }
 	}
 
@@ -140,48 +133,42 @@ input{
         
     }
     button{
-        position: absolute;
-        cursor: pointer;
-        border: solid;
         border-radius: 50px;
-        
-        padding-right:13px ;
+        padding-right: 0px;
         margin-right: 20px;
-        
-        font-family: 'OpenSans-Regular';
         width: 70px;
         height: 30px;
         right: 0;
-        text-align: right;        
-    }
+        margin-top: 0px;      
+        }
     .add{
         padding: 10px;
         margin: 20px;
         margin-left: 150px;
     }
+    .material-symbols-outlined {
+            width: 20px;
+            margin-right: 20px;
+            
+        }
 }
 @media(max-width: 400px){
     h1{
-        margin-left: 100px;
+        margin-left: 90px;
         height: 30px;
         padding-left: 0px;
         font-size: small;
         padding-top: 3px;
         
     }
+
     button{
-        position: absolute;
-        cursor: pointer;
-        border: solid;
         border-radius: 30px;
         margin-right: 3px;
-        padding-right:3px ;
-        font-size: small;
-        font-family: 'OpenSans-Regular';
+        padding-right: 0px;
+        font-size: x-small;
         width: 50px;
         height: 30px;
-        right: 0;
-            
     }
     .add{
         height: 300px;
