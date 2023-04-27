@@ -14,11 +14,15 @@
             };
 
             const users = JSON.parse(sessionStorage.getItem('users')) || [];
-            users.push(user);
+            users.unshift(user);
             sessionStorage.setItem('users', JSON.stringify(users));
             users.push(user);
             router.push('/users');
-        } else {
+        }else if(name.value){
+            alert('Code is required!');
+        }else if(code.value){
+            alert('Name is required!');
+        }else {
             alert('All fields are required!');
         }
     }

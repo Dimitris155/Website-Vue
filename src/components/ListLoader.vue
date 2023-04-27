@@ -1,57 +1,40 @@
 <template>
-  <div id="loading-bar">
-    <div class="fill"></div>
-  </div>
+    <div id="loading-bar">
+      <div class="fill"></div>
+    </div>
 </template>
-
-
+  
 <style scoped>
-    
+      
 /* bar-loader */
-*{
-    margin: 0;
-    padding:0;
-    box-sizing: border-box;
+
+#loading-bar {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 20%;
+height: 5px;
+background-color: var(--lightblue);
+z-index: 9999;
+border-radius: 50px;
+padding-left: 2px;
 }
 
-#loading-bar{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    min-height:100vh;
-    
-}
-.fill{
-    position:relative;
-    width:100px;
-    height: 100px;
-    background-color: var(--blue);
-    -webkit-box-reflect: below 1px linear-gradient(transparent, var(--blue));
-}
-.fill::before{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, var(--blue),var(--lightblue));
-    animation: animate 20s linear infinite;
-    background-size: 500%;
-}
-.fill::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, var(--blue),var(--lightblue));
-    animation: animate 20s linear infinite;
-    background-size: 500%;
-    filter: blur(20px);
-}
-@keyframes animate{
-    0%{
-        background-position: 0 0 ;
-    }
-    0%{
-        background-position: 500% 0 ;
-    }
+#loading-bar .fill {
+height: 100%;
+background-color: var(--blue);
+animation: fill 3s ease-out forwards;
 }
 
+@keyframes fill {
+from {
+    width: 0%;
+}
+to {
+    width: 100%;
+}
+}
+  
 </style>
+  

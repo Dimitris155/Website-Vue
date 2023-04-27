@@ -8,7 +8,7 @@
         const res = await fetch('/data/users.json');
         let data = await res.json();
         const sessionData = JSON.parse(sessionStorage.getItem('users')); 
-        if (sessionData && sessionData.length > 0) { // Check if there is any data in session storage
+        if (sessionData && sessionData.length > 0) {
             data = [...sessionData,...data];
         }
         users.value = data;
