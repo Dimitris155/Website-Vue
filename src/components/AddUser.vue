@@ -16,7 +16,6 @@
             const users = JSON.parse(sessionStorage.getItem('users')) || [];
             users.unshift(user);
             sessionStorage.setItem('users', JSON.stringify(users));
-            users.push(user);
             router.push('/users');
         }else if(name.value){
             alert('Code is required!');
