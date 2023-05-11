@@ -1,10 +1,10 @@
-
 <script setup>
     import ListLoader from '../components/ListLoader.vue'
     import {onMounted, ref} from 'vue'
 
     const products = ref([])
     const checkedProducts = ref([]);
+	const isListLoading = ref(true);
 
     async function getProducts() {
         const res = await fetch('/data/products.json')
@@ -43,6 +43,7 @@
             alert("Please choose a product to delete");
         }
     }
+
     /* Bar loading before the list appear */
     function closeListLoader(){
 		isListLoading.value = false;
@@ -51,9 +52,6 @@
 
 		setTimeout(closeListLoader, 2000);
 	})
-
-	const isListLoading = ref(true);
-
 </script>
 
 <template>
@@ -85,74 +83,78 @@
 
 <style scoped>
 
-/* checkbox */
-.selected {
-  background-color:var(--grey); 
-}
+    /* checkbox */
+    .selected {
+    background-color:var(--grey); 
+    }
 
-input[type="checkbox"]{
-    cursor: pointer;
-    margin: 20px;
-    margin-top: 30px;
+    input[type="checkbox"]{
+        cursor: pointer;
+        margin: 20px;
+        margin-top: 30px;
 
-}
+    }
 
-/* top bar */
-.top-bar{
-    position:static;
-    box-sizing: border-box;
-    backface-visibility: hidden;
-    background-color: var(--white);
-    width: 100%;
-    box-shadow: 2px 5px 5px #888888;
- 
-}
-h1{
-    font-family: 'OpenSans-Bold';
-}
+    /* top bar */
+    .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        backface-visibility: hidden;
+        background-color: var(--white);
+        width: 100%;
+        box-shadow: 2px 5px 5px #888888;
+        z-index: 99;
+    }
 
-button{
-    position: absolute;
-    cursor: pointer;
-    border: solid;
-    font-family: 'OpenSans-Regular';
-    text-align: right;
-    position: fixed;
-        
-}
+    h1{
+        font-family: 'OpenSans-Bold';
+    }
 
-/* products table */
+    button{
+        position: absolute;
+        cursor: pointer;
+        border: solid;
+        font-family: 'OpenSans-Regular';
+        text-align: right;
+        z-index:1;   
+    }
 
-table{
-    width: 100%;
-    text-align: left;
-    position: relative;
-    list-style: none;
-    border-collapse:collapse;
-    border-spacing: 0px;
-    
-}
-tr{
-    right: 0;
-    margin-left: 150px;
-}
-th{
-    font-family: 'OpenSans-SemiBold';
-    border-bottom: 2px solid #ccc;
-    border-radius: 1px;
-    position: relative;
-    border-width: 100%;
-    
-}
-td{
-    border-bottom: 1px solid #ccc;
-    font-family: 'OpenSans-Regular';
-    height: 3rem;
-}
+    /* products table */
 
-/* media */
+    table{
+        width: 100%;
+        text-align: left;
+        position: relative;
+        list-style: none;
+        border-collapse:collapse;
+        border-spacing: 0px;
+        margin-top:90px;    
+    }
 
-@media (max-width: 2000px) {
+    tr{
+        right: 0;
+        margin-left: 150px;
+    }
+
+    th{
+        font-family: 'OpenSans-SemiBold';
+        border-bottom: 2px solid #ccc;
+        border-radius: 1px;
+        position: relative;
+        border-width: 100%;
+    }
+
+    td{
+        border-bottom: 1px solid #ccc;
+        font-family: 'OpenSans-Regular';
+        height: 3rem;
+    }
+
+    /* media */
+
+    @media (max-width: 2000px) {
         table{
             margin-left: 0;
             
@@ -189,8 +191,7 @@ td{
         input[type="checkbox"]{
             transform: scale(1.5);
         }
-	}
-
+    }
     @media (max-width: 1024px) {
         h1{
             margin-left: 100px;
@@ -220,7 +221,7 @@ td{
             transform: scale(1.4);
         }
     }
-    
+        
     @media (max-width: 400px) {
         h1{
             margin-left: 100px;
@@ -245,13 +246,10 @@ td{
             margin-top: 4px;
             width: 60px;
             height: 30px;
-            right: 0;
-                
+            right: 5px;                
         }
-          input[type="checkbox"]{
+        input[type="checkbox"]{
             transform: scale(1.2);
         }
     }
-
-
 </style>

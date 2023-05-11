@@ -3,6 +3,7 @@
     import { ref, onMounted } from 'vue';
 
     const users = ref([]);
+    const isListLoading = ref(true);
 
     async function getUsers() {
         const res = await fetch('/data/users.json');
@@ -26,9 +27,6 @@
 
 		setTimeout(closeListLoader, 2000);
 	})
-
-	const isListLoading = ref(true);
-
 </script>
 
 <template>
@@ -36,9 +34,10 @@
     <main class="users-page">
         <div class="top-bar">
             <h1>Users  
-            <router-link to="/adduser" class="button">
-			    <button>Add New</button>
-		    </router-link> </h1>
+                <router-link to="/adduser" class="button">
+                    <button>Add New</button>
+                </router-link>
+            </h1>
         </div>
         <div class="users" v-if="!isListLoading">
             <table>
@@ -61,63 +60,67 @@
 
 <style scoped>
 
-/* top bar */
-.top-bar{
-    position:static;
-    box-sizing: border-box;
-    backface-visibility: hidden;
-    background-color: var(--white);
-    width: 100%;
-    box-shadow: 2px 5px 5px #888888;
- 
-}
+    /* top bar */
+    .top-bar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        backface-visibility: hidden;
+        background-color: var(--white);
+        width: 100%;
+        box-shadow: 2px 5px 5px #888888;
+        z-index: 99;
+    }
 
-h1{
-    font-family: 'OpenSans-Bold';
-}
+    h1{
+        font-family: 'OpenSans-Bold';
+    }
 
-button{
-    position: absolute;
-    cursor: pointer;
-    border: solid;
-    font-family: 'OpenSans-Regular';
-    text-align: right;
+    button{
+        position: absolute;
+        cursor: pointer;
+        border: solid;
+        font-family: 'OpenSans-Regular';
+        text-align: right;
+        z-index:1;
+    }
+
+    /* users table */
+    table{
+        width: 100%;
+        text-align: left;
+        position: relative;
+        list-style: none;
+        border-collapse:collapse;
+        border-spacing: 0px;
+        margin-top:90px;
+    }
+
+    th{
+        font-family: 'OpenSans-SemiBold';
+        border-bottom: 2px solid #ccc;
+        border-radius: 1px;
+        position: relative;
+        border-width: 100%;
+        
+    }
     
-}
+    td{
+        border-bottom: 1px solid #ccc;
+        font-family: 'OpenSans-Regular';
+        height: 3rem;
 
-/* users table */
-table{
-    width: 100%;
-    text-align: left;
-    position: relative;
-    list-style: none;
-    border-collapse:collapse;
-    border-spacing: 0px;
-    
-}
+    }
 
-th{
-    font-family: 'OpenSans-SemiBold';
-    border-bottom: 2px solid #ccc;
-    border-radius: 1px;
-    position: relative;
-    border-width: 100%;
-    
-}
-td{
-    border-bottom: 1px solid #ccc;
-    font-family: 'OpenSans-Regular';
-    height: 3rem;
+    /* media */
 
-}
-
-/* media */
-
-@media (max-width: 2000px) {
+    @media (max-width: 2000px) {
         table{
             margin-left: 0;
             
         }
+
         h1{
             margin-left: 160px;
             height: 50px;
@@ -127,11 +130,13 @@ td{
             text-decoration: none;
             margin-bottom: 2rem;
         }
+
         th{
             margin-bottom: 4rem;
             padding-bottom: 2rem;
             padding-left: 200px;
         }
+
         td{
             padding-left: 200px;
             padding-bottom: 1rem;
@@ -145,8 +150,7 @@ td{
             margin-top: 10px;
             width: 90px;
             height: 30px;
-            right: 0;
-                
+            right: 0;      
         }
 	}
 
@@ -156,9 +160,11 @@ td{
             height: 50px;
             padding-left: 0px;
         }
+
         td{
             padding-left: 100px;
         }
+
         th{
             padding-left: 100px;
         }
@@ -171,10 +177,10 @@ td{
             margin-top: 10px;
             width: 90px;
             height: 30px;
-            right: 0;
-                
+            right: 0;       
         }
     }
+
     @media(max-width: 400px){
         h1{
             margin-left: 100px;
@@ -183,9 +189,11 @@ td{
             font-size: x-large;
             margin-top: 5px;
         }
+
         td{
             padding-left: 100px;
         }
+
         th{
             padding-left: 100px;
         }
@@ -201,7 +209,5 @@ td{
             right: 0;
             position: fixed;    
         }
-
     }
-
 </style>
